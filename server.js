@@ -84,7 +84,7 @@ app.post('/call', async (req, res) => {
                 rule_id: VOX_RULE_ID,
                 caller: CALLER_ID,
                 destination: phoneNumber,
-                custom_data: JSON.stringify(customData)
+                script_custom_data: JSON.stringify(customData)
             }
         });
 
