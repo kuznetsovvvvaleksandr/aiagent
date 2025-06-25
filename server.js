@@ -74,6 +74,9 @@ app.post('/call', async (req, res) => {
     }
 
     try {
+        const customData = { phoneNumber, systemPrompt };
+        console.log('Sending to Voximplant:', JSON.stringify(customData));
+
         const response = await axios.post('https://api.voximplant.com/platform_api/StartScenarios/', null, {
             params: {
                 account_id: VOX_ACCOUNT_ID,
@@ -81,7 +84,7 @@ app.post('/call', async (req, res) => {
                 rule_id: VOX_RULE_ID,
                 caller: CALLER_ID,
                 destination: phoneNumber,
-                custom_data: JSON.stringify({ phoneNumber, systemPrompt })
+                custom_data: JSON.stringify(customData)
             }
         });
 
