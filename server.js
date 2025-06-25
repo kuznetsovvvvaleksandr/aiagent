@@ -19,8 +19,8 @@ const VOX_API_KEY_FILE = './voximplant_key.json';
 const VOX_ACCOUNT_ID = "9742417";
 // 4. ID правила, которое будет запускать сценарий. Мы создадим его позже.
 const VOX_RULE_ID = 7920680; 
-// 5. Номер, с которого будет идти звонок (нужно купить или подтвердить в Voximplant)
-const CALLER_ID = "+79011475134";
+// 5. Номер, с которого будет идти звонок (теперь это номер Билайна)
+const CALLER_ID = "+79636836532";
 
 
 // --- OpenAI & ElevenLabs ---
