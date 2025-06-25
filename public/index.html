@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Voice Agent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: linear-gradient(120deg, #f6f8fc 0%, #e9efff 100%); margin: 0; }
+        .container { background: rgba(255,255,255,0.97); padding: 3rem 2.2rem 2.5rem 2.2rem; border-radius: 22px; box-shadow: 0 8px 32px rgba(60,80,180,0.08), 0 1.5px 4px rgba(0,0,0,0.04); text-align: left; width: 420px; max-width: 98vw; }
+        h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.15em; letter-spacing: -1px; }
+        .subtitle { font-size: 1.08rem; color: #6b7a90; margin-bottom: 2.1rem; font-weight: 500; }
+        label { display: block; margin-top: 1.7rem; margin-bottom: 0.7rem; font-weight: 600; color: #2d3547; letter-spacing: 0.01em; }
+        input, textarea {
+            padding: 1.15rem 1.1rem;
+            width: 100%;
+            border: 1.5px solid #e3e8f0;
+            border-radius: 14px;
+            font-size: 1.13rem;
+            background: #f8fafc;
+            margin-bottom: 0.1rem;
+            transition: border 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+            box-shadow: 0 1px 2px rgba(60,80,180,0.03);
+        }
+        input:focus, textarea:focus {
+            border: 1.5px solid #7baaff;
+            outline: none;
+            box-shadow: 0 2px 8px rgba(60,80,180,0.07);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+            max-height: 220px;
+        }
+        button {
+            padding: 1.15rem 1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 2.1rem;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(90deg, #4f8cff 0%, #6e7fff 100%);
+            color: white;
+            font-size: 1.18rem;
+            font-weight: 600;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(60,80,180,0.07);
+            transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
+            min-height: 56px;
+        }
+        button:disabled {
+            background: #b7d2ff;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        button:not(:disabled):hover {
+            background: linear-gradient(90deg, #3a6eea 0%, #5a6fff 100%);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 4px 16px rgba(60,80,180,0.10);
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        .spinner {
+            display: none;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #fff;
+            width: 18px;
+            height: 18px;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #status {
+            margin-top: 2.2rem;
+            font-style: italic;
+            padding: 1.1rem;
+            border-radius: 10px;
+            display: none;
+            font-size: 1.11rem;
+        }
+        .status-success {
+            background-color: #e7f7e7;
+            color: #2d6a2d;
+            display: block;
+        }
+        .status-error {
+            background-color: #fdeaea;
+            color: #b72d2d;
+            display: block;
+        }
+        .status-info {
+            background-color: #e7f0f7;
+            color: #3f6a94;
+            display: block;
+        }
+        input::placeholder, textarea::placeholder {
+            font-family: 'Inter', sans-serif;
+            color: #b6bed2;
+            opacity: 1;
+            font-weight: 400;
+            font-size: 1.08rem;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 1.2rem 0.5rem; width: 99vw; }
+            h1 { font-size: 1.3rem; }
+            .subtitle { font-size: 0.98rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Voice Agent</h1>
+        <div class="subtitle">Голосовой AI-ассистент для звонков через SIP</div>
+        <form id="call-form">
+            <label for="system-prompt">Цель звонка (промпт для ИИ):</label>
+            <textarea id="system-prompt" rows="4" placeholder="Ты — вежливый ассистент, который звонит, чтобы подтвердить запись на прием.">Ты — полезный помощник. Твои ответы должны быть на русском языке.</textarea>
+            
+            <label for="phone-number">Номер телефона:</label>
+            <input type="tel" id="phone-number" placeholder="+79123456789" value="+7" required>
+            
+            <button type="submit" id="call-button">
+                <span class="button-text">Позвонить</span>
+                <div class="spinner"></div>
+            </button>
+        </form>
+        <div id="status"></div>
+    </div>
+    <script src="/js/main.js"></script>
+</body>
+</html> 
